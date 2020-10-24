@@ -4,10 +4,11 @@ export const Container = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
-  margin: 5rem 0;
+  margin-top: 4rem;
+  margin-bottom: 3rem;
 `;
 
-const ButtonStyles = styled.button`
+const TabStyles = styled.button`
   width: 5.5rem;
   height: 2rem;
   background: transparent;
@@ -18,17 +19,20 @@ const ButtonStyles = styled.button`
   font-size: 0.8rem;
   font-weight: 600;
   color: ${({ active }) => (active ? "#7cc3fd" : "#606061")};
+  outline: none;
   cursor: pointer;
 `;
 
-export const ButtonLeft = styled(ButtonStyles)`
+export const LeftTab = styled(TabStyles)`
   border-top-left-radius: 3px;
   border-bottom-left-radius: 3px;
   border-right-width: ${({ active }) => (active ? "1px" : "0")};
+  border-right-color: #d8d8d8;
 `;
 
-export const ButtonRight = styled(ButtonStyles)`
+export const RightTab = styled(TabStyles)`
   border-top-right-radius: 3px;
   border-bottom-right-radius: 3px;
   border-left-width: ${({ active }) => (active ? "1px" : "0")};
+  border-left-color: #d8d8d8;
 `;

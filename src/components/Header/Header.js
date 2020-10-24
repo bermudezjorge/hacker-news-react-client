@@ -1,15 +1,15 @@
 import React from "react";
 
-import { LayoutFixedWidth } from "components/Layouts";
+import { LayoutWidth } from "components/Layouts";
 
 import { Container, Logo } from "./styles";
 
 export default function Header() {
   return (
     <Container>
-      <LayoutFixedWidth>
+      <LayoutWidth>
         <Logo>HACKER NEWS</Logo>
-      </LayoutFixedWidth>
+      </LayoutWidth>
     </Container>
   );
 }
