@@ -15,10 +15,10 @@ export const Card = styled.div`
 `;
 
 export const TextContainerLink = styled.a`
+  width: 85%;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
   text-decoration: none;
   padding: 0.7rem 1.5rem;
 `;
@@ -47,7 +47,7 @@ export const CardTitle = styled.h1`
 `;
 
 export const FavCon = styled.div`
-  width: 14%;
+  width: 15%;
   height: 100%;
   display: flex;
   justify-content: center;

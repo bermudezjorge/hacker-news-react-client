@@ -6,14 +6,12 @@ export const fetcher = (url) => axios.get(url).then((res) => res.data);
 export default function useNews(tech) {
   const { data, error, setSize } = useSWRInfinite(
     (index) =>
-      `https://hn.algolia.com/api/v1/search_by_date?query=${tech}&page=${
-        index + 1
-      }`,
+      `https://hn.algolia.com/api/v1/search_by_date?query=${tech}&page=${index}`,
     fetcher
   );
 
   return {
-    data: data,
+    news: data ? [].concat(...data[0].hits) : [],
     isLoading: !error && !data,
     isError: error,
     setSize: setSize,

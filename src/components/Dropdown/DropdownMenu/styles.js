@@ -12,8 +12,9 @@ const appear = keyframes`
 `;
 
 export const MenuContainer = styled.div`
-  width: 253px;
-  margin-left: 0.1rem;
+  width: 250px;
+  position: absolute;
+  top: 100%;
   background: #fff;
   box-shadow: 0px 2px 3px rgb(0 0 0 / 15%);
   animation: ${appear} 0.2s ease;

@@ -6,15 +6,14 @@ import NewsCard from "../NewsCard";
 import useNews from "hooks/useNews";
 
 export default function NewsRenderer() {
-  const { data, isLoading, isError, setSize } = useNews("react");
+  const { news, isLoading, isError, setSize } = useNews("reactjs");
 
-  const news = data ? [].concat(...data) : [];
   return (
     <LayoutWidth>
       <LayoutNews>
-        {news.map((newsData) => {
-          <NewsCard isFav={false} />;
-        })}
+        {news.map((data) => (
+          <NewsCard key={data.create_at} isFav={false} data={data} />
+        ))}
       </LayoutNews>
     </LayoutWidth>
   );
