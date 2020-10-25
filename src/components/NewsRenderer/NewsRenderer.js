@@ -11,8 +11,8 @@ export default function NewsRenderer() {
   return (
     <LayoutWidth>
       <LayoutNews>
-        {news.map((data) => (
-          <NewsCard key={data.create_at} isFav={false} data={data} />
+        {news.map((data, i) => (
+          <NewsCard key={i} isFav={false} data={data} />
         ))}
       </LayoutNews>
     </LayoutWidth>

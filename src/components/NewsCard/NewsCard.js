@@ -35,14 +35,14 @@ export default function NewsCard({ data, isFav }) {
 
     const diff = (currectTime - createdTime) / 3600000;
 
-    const diffInHours = (diff * 60) / 60;
+    const diffInMin = Math.floor(diff * 60);
 
-    if (diffInHours >= 60) {
-      //return hours
-      return Math.floor(diffInHours) + "hours";
+    if (diffInMin > 60) {
+      const hours = Math.floor(diffInMin / 60);
+
+      return `${hours} hours`;
     } else {
-      //return mins
-      return (diffInHours.toFixed(2) + "").split(".")[1] + "mins";
+      return `${diffInMin} mins`;
     }
   };
 
