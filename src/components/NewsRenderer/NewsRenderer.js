@@ -7,6 +7,7 @@ import { LayoutWidth } from "../Layouts";
 import NewsCard from "../NewsCard";
 
 const NUM_COLUMNS = 2;
+let itemsIndex = 0;
 
 export default function NewsRenderer({ query }) {
   const [items, setItems] = useState({});
@@ -29,7 +30,7 @@ export default function NewsRenderer({ query }) {
       const newItems = {};
 
       news.forEach(({ story_url, created_at, author, story_title }, index) => {
-        newItems[index] = {
+        newItems[itemsIndex++] = {
           story_url,
           created_at,
           author,
