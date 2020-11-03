@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import axios from "axios";
+import React, { useState, useEffect } from "react";
 import { FixedSizeGrid as Grid } from "react-window";
 import InfiniteLoader from "react-window-infinite-loader";
+import axios from "axios";
 
 import { LayoutWidth } from "../Layouts";
 import NewsCard from "../NewsCard";
@@ -12,6 +12,11 @@ export default function NewsRenderer({ query }) {
   const [items, setItems] = useState({});
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(0);
+
+  useEffect(() => {
+    //clear
+    setItems({});
+  }, [query]);
 
   function loadMoreItems() {
     setPage((prevPage) => prevPage + 1);
