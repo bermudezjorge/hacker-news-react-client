@@ -15,12 +15,5 @@ export const LayoutWidth = styled.div`
   width: 100%;
   max-width: 1024px;
   margin: 0 auto;
-`;
-
-export const LayoutNews = styled.div`
-  width: 100%;
-  display: grid;
-  grid-template-columns: 50% 50%;
-  grid-gap: 2rem 2.5rem;
-  margin-top: 2rem;
+  margin-top: 1.5rem;
 `;

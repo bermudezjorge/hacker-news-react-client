@@ -21,19 +21,17 @@ export default function DropdownMenu({
     };
   }, [handleMenu]);
 
-  const filterOptions = (_, index) => index > 0;
-
   const isOptionActive = (thisOption) => currectOption.title === thisOption;
 
   return (
     <MenuContainer>
-      {MENU_OPTIONS.filter(filterOptions).map((option) => (
+      {MENU_OPTIONS.map((option) => (
         <DropdownOption
           key={option.title}
           inMenu={true}
           active={isOptionActive(option.title)}
           handleMenu={handleMenu}
-          setOption={handleOption}
+          handleOption={handleOption}
           option={option}
           clickable={true}
         >

@@ -15,7 +15,7 @@ import clock from "assets/icon/clock.svg";
 import heart from "assets/icon/heart.svg";
 import unheart from "assets/icon/heart-outline.svg";
 
-export default function NewsCard({ data, isFav }) {
+export default function NewsCard({ style, data, isFav }) {
   const [fav, setFav] = useState(isFav || false);
   const [notFirst, setNotFirst] = useState(false);
 
@@ -29,7 +29,7 @@ export default function NewsCard({ data, isFav }) {
   const ifFavHeart = () => (fav ? heart : unheart);
 
   const hoursDiff = () => {
-    const createdTime = Date.parse(data.created_at);
+    const createdTime = Date.parse(data?.created_at);
 
     const currectTime = Date.parse(new Date());
 
@@ -47,19 +47,19 @@ export default function NewsCard({ data, isFav }) {
   };
 
   return (
-    <Card>
+    <Card style={{ ...style }}>
       <TextContainerLink
-        href={data.story_url}
+        href={data?.story_url}
         target="_blank"
         rel="noopener noreferrer"
       >
         <TimeAuthorCon>
           <ClockIcon src={clock} />
           <TimeAuthorText>
-            {hoursDiff()} ago by {data.author}
+            {hoursDiff()} ago by {data?.author}
           </TimeAuthorText>
         </TimeAuthorCon>
-        <CardTitle>{data.story_title || "No title"}</CardTitle>
+        <CardTitle>{data?.story_title || "No title"}</CardTitle>
       </TextContainerLink>
       <FavCon onClick={() => handleFav()}>
         <FavIcon

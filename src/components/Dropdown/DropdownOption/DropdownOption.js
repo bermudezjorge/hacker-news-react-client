@@ -4,16 +4,16 @@ import { Option, Logo, Title } from "./styles";
 
 export default function DropdownOption({
   inMenu,
+  active,
   clickable,
   handleMenu,
-  active,
-  setOption,
+  handleOption,
   option,
   children,
 }) {
   const handleClick = () => {
     if (clickable) {
-      setOption(option);
+      handleOption(option);
       handleMenu();
     }
   };

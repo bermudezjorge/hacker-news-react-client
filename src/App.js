@@ -6,13 +6,17 @@ import Tab from "components/Tab";
 import Dropdown from "components/Dropdown";
 import NewsRenderer from "components/NewsRenderer";
 
+import useSharedState from "hooks/useSharedState";
+
 function App() {
+  const { currectOption, handleOption } = useSharedState();
+
   return (
     <Layout>
       <Header />
       <Tab />
-      <Dropdown />
-      <NewsRenderer />
+      <Dropdown currectOption={currectOption} handleOption={handleOption} />
+      <NewsRenderer query={currectOption.query || "reactjs"} />
     </Layout>
   );
 }

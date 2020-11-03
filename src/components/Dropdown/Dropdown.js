@@ -5,8 +5,6 @@ import DropdownOption from "./DropdownOption";
 
 import { LayoutWidth } from "../Layouts";
 
-import useLocalStorage from "hooks/useLocalStorage";
-
 import {
   DropdownWrapper,
   DropdownInput,
@@ -14,27 +12,13 @@ import {
   DropDownIndicator,
 } from "./styles";
 
-import MENU_OPTIONS from "./menu_options";
-
 import arrow from "assets/icon/arrow.svg";
 
-const defaultMsg = MENU_OPTIONS[0].title;
-
-export default function Dropdown() {
-  const [storage, setStorage] = useLocalStorage("filterOption");
-  const [currectOption, setCurrectOption] = useState(
-    storage || MENU_OPTIONS[0]
-  );
+export default function Dropdown({ currectOption, handleOption }) {
   const [show, setShow] = useState(false);
 
   const handleMenu = () => {
     setShow(!show);
-  };
-
-  const handleOption = (option) => {
-    setCurrectOption(option);
-    setStorage(option);
-    handleMenu();
   };
 
   return (
@@ -45,8 +29,8 @@ export default function Dropdown() {
         }}
       >
         <DropdownInput onClick={() => handleMenu()}>
-          {currectOption.title === defaultMsg ? (
-            <DefaultMsg>{currectOption.title}</DefaultMsg>
+          {currectOption.title === null ? (
+            <DefaultMsg>Select your news</DefaultMsg>
           ) : (
             <DropdownOption inMenu={false} clickable={false}>
               <DropdownOption.Logo src={currectOption.logo} />

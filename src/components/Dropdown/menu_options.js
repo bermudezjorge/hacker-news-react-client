@@ -3,21 +3,20 @@ import reactLogo from "assets/img/frontend-logos/react.svg";
 import vueLogo from "assets/img/frontend-logos/vue.png";
 
 const MENU_OPTIONS = [
-  //default msg
-  {
-    title: "Select your news",
-  },
   {
     logo: angularLogo,
     title: "Angular",
+    query: "angular",
   },
   {
     logo: reactLogo,
     title: "React",
+    query: "reactjs",
   },
   {
     logo: vueLogo,
     title: "Vuejs",
+    query: "vuejs",
   },
 ];
 
