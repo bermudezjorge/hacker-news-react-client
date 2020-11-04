@@ -36,7 +36,9 @@ export default function FavNews() {
           height={452}
           columnCount={NUM_COLUMNS}
           columnWidth={490}
-          rowCount={itemsArr.length}
+          rowCount={
+            itemsArr.length === 1 ? itemsArr.length : itemsArr.length - 1
+          }
           rowHeight={90}
         >
           {Cell}
