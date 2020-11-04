@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 
+import useFavNews from "hooks/useFavNews";
+
 import {
   Card,
   TextContainerLink,
@@ -15,13 +17,20 @@ import clock from "assets/icon/clock.svg";
 import heart from "assets/icon/heart.svg";
 import unheart from "assets/icon/heart-outline.svg";
 
-export default function NewsCard({ style, data, isFav }) {
-  const [fav, setFav] = useState(isFav || false);
+export default function NewsCard({ style, data }) {
+  const [favNews, setFavNews] = useFavNews();
+  const [fav, setFav] = useState(
+    favNews.hasOwnProperty(`${data?.created_at}`) || false
+  );
   const [notFirst, setNotFirst] = useState(false);
 
   const handleFav = () => {
     setFav(!fav);
     setNotFirst(true);
+
+    const newsItem = { [data?.created_at]: data };
+
+    setFavNews({ type: fav ? "remove" : "add", newsItem });
   };
 
   const effectIfNotFirstAndFav = () => notFirst && fav;

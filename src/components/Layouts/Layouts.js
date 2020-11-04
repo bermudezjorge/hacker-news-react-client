@@ -8,7 +8,6 @@ export const Layout = styled.div`
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: #fcfcfc;
 `;
 
 export const LayoutWidth = styled.div`

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useLocation, Link } from "wouter";
 
 import { Container, LeftTab, RightTab } from "./styles";
 
@@ -7,27 +8,20 @@ const BUTTON = {
   right: "My faves",
 };
 
-const DEFAULT_ACTIVE_TAB = BUTTON.left;
-
 export default function Tab() {
-  const [tab, setTab] = useState(DEFAULT_ACTIVE_TAB);
+  const [location] = useLocation();
+  const [tab, setTab] = useState(location === "/" ? BUTTON.left : BUTTON.right);
 
   const isTabActive = (thisTab) => tab === thisTab;
 
   return (
     <Container>
-      <LeftTab
-        active={isTabActive(BUTTON.left)}
-        onClick={() => setTab(BUTTON.left)}
-      >
-        {BUTTON.left}
-      </LeftTab>
-      <RightTab
-        active={isTabActive(BUTTON.right)}
-        onClick={() => setTab(BUTTON.right)}
-      >
-        {BUTTON.right}
-      </RightTab>
+      <Link href="/" onClick={() => setTab(BUTTON.left)}>
+        <LeftTab active={isTabActive(BUTTON.left)}>{BUTTON.left}</LeftTab>
+      </Link>
+      <Link href="/fav-news" onClick={() => setTab(BUTTON.right)}>
+        <RightTab active={isTabActive(BUTTON.right)}>{BUTTON.right}</RightTab>
+      </Link>
     </Container>
   );
 }

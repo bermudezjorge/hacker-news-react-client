@@ -8,9 +8,12 @@ export const Container = styled.div`
   margin-bottom: 3rem;
 `;
 
-const TabStyles = styled.button`
+const TabStyles = styled.div`
   width: 5.5rem;
   height: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background: transparent;
   border-width: 2px;
   border-bottom-width: 1px;

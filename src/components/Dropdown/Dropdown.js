@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import DropdownMenu from "./DropdownMenu/DropdownMenu";
+import DropdownMenu from "./DropdownMenu";
 import DropdownOption from "./DropdownOption";
 
 import { LayoutWidth } from "../Layouts";

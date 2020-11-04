@@ -4,18 +4,20 @@ import InfiniteLoader from "react-window-infinite-loader";
 import axios from "axios";
 
 import { LayoutWidth } from "../Layouts";
+import Loader from "../Loader";
 import NewsCard from "../NewsCard";
 
 const NUM_COLUMNS = 2;
 let itemsIndex = 0;
 
-export default function NewsRenderer({ query }) {
+export default function News({ query }) {
   const [items, setItems] = useState({});
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(0);
 
   useEffect(() => {
-    //clear
+    //reset items
+    itemsIndex = 0;
     setItems({});
   }, [query]);
 
@@ -29,7 +31,7 @@ export default function NewsRenderer({ query }) {
       const news = res.data.hits;
       const newItems = {};
 
-      news.forEach(({ story_url, created_at, author, story_title }, index) => {
+      news.forEach(({ story_url, created_at, author, story_title }) => {
         newItems[itemsIndex++] = {
           story_url,
           created_at,
@@ -40,17 +42,18 @@ export default function NewsRenderer({ query }) {
 
       setLoading(false);
       setItems({ ...items, ...newItems });
-      console.log(Object.keys(items).length + 1);
     });
   }
 
   const Cell = ({ columnIndex, rowIndex, style }) => {
     const itemIndex = rowIndex * NUM_COLUMNS + columnIndex;
 
+    const currentData = items[itemIndex];
+
     if (loading) {
-      return <h1 style={style}>Loading...</h1>;
+      return <Loader style={style} />;
     } else {
-      return <NewsCard style={style} isFav={false} data={items[itemIndex]} />;
+      return <NewsCard style={style} data={currentData} />;
     }
   };
 
