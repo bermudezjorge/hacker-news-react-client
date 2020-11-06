@@ -10,7 +10,7 @@ import NewsCard from "../NewsCard";
 const NUM_COLUMNS = 2;
 let itemsIndex = 0;
 
-export default function News({ query }) {
+export default function News({ query, favNews, saveFavNews }) {
   const [items, setItems] = useState({});
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(0);
@@ -53,7 +53,14 @@ export default function News({ query }) {
     if (loading) {
       return <Loader style={style} />;
     } else {
-      return <NewsCard style={style} data={currentData} />;
+      return (
+        <NewsCard
+          style={style}
+          data={currentData}
+          isFav={favNews.hasOwnProperty(`${currentData?.created_at}`)}
+          saveFavNews={saveFavNews}
+        />
+      );
     }
   };
 

@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { FixedSizeGrid as Grid } from "react-window";
 
-import useFavNews from "hooks/useFavNews";
-
 import { LayoutWidth } from "../Layouts";
 import NewsCard from "../NewsCard";
 
@@ -10,8 +8,7 @@ import { NoNews } from "./styles";
 
 const NUM_COLUMNS = 2;
 
-export default function FavNews() {
-  const [favNews] = useFavNews();
+export default function FavNews({ favNews, saveFavNews }) {
   const [items, setItems] = useState({});
   const [itemsArr, setItemsArr] = useState([]);
 
@@ -25,7 +22,14 @@ export default function FavNews() {
 
     const currentData = itemsArr[itemIndex];
 
-    return <NewsCard style={style} data={currentData} />;
+    return (
+      <NewsCard
+        style={style}
+        data={currentData}
+        isFav={true}
+        saveFavNews={saveFavNews}
+      />
+    );
   };
 
   if (!!Object.keys(items).length) {

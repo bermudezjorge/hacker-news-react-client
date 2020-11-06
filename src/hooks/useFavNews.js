@@ -7,23 +7,23 @@ const toObj = (obj) => (obj ? JSON.parse(obj) : null);
 
 export default function useFavNews() {
   const [storage, setStorage] = useLocalStorage("favNews");
-  const [news, setNews] = useState(toObj(storage) || {});
+  const [favNews, setFavNews] = useState(toObj(storage) || {});
 
-  const setFavNews = ({ type, newsItem }) => {
-    const oldFavNews = { ...news };
-
+  const saveFavNews = ({ type, newsItem }) => {
     if (type === "add") {
-      const newFavNews = { ...oldFavNews, ...newsItem };
+      const newFavNews = { ...favNews, ...newsItem };
 
-      setNews(newFavNews);
       setStorage(toString(newFavNews));
+      setFavNews(newFavNews);
     } else {
+      let oldFavNews = { ...favNews };
+
       delete oldFavNews[Object.keys(newsItem)[0]];
 
-      setNews(oldFavNews);
       setStorage(toString(oldFavNews));
+      setFavNews(oldFavNews);
     }
   };
 
-  return [news, setFavNews];
+  return { favNews, saveFavNews };
 }

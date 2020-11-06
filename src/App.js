@@ -1,6 +1,8 @@
 import React from "react";
 import { Route } from "wouter";
 
+import useFavNews from "hooks/useFavNews";
+
 import { Layout } from "components/Layouts";
 import Header from "components/Header";
 import Tab from "components/Tab";
@@ -11,6 +13,7 @@ import FavNews from "components/FavNews";
 import useSharedState from "hooks/useSharedState";
 
 function App() {
+  const { favNews, saveFavNews } = useFavNews();
   const { currectOption, handleOption } = useSharedState();
 
   return (
@@ -24,11 +27,17 @@ function App() {
               currectOption={currectOption}
               handleOption={handleOption}
             />
-            <News query={currectOption.query || "reactjs"} />
+            <News
+              query={currectOption.query || "reactjs"}
+              favNews={favNews}
+              saveFavNews={saveFavNews}
+            />
           </>
         )}
       </Route>
-      <Route path="/fav-news" component={FavNews} />
+      <Route path="/fav-news">
+        {() => <FavNews favNews={favNews} saveFavNews={saveFavNews} />}
+      </Route>
     </Layout>
   );
 }

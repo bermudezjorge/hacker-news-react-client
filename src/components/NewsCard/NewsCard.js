@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 
-import useFavNews from "hooks/useFavNews";
-
 import {
   Card,
   TextContainerLink,
@@ -17,11 +15,8 @@ import clock from "assets/icon/clock.svg";
 import heart from "assets/icon/heart.svg";
 import unheart from "assets/icon/heart-outline.svg";
 
-export default function NewsCard({ style, data }) {
-  const [favNews, setFavNews] = useFavNews();
-  const [fav, setFav] = useState(
-    favNews.hasOwnProperty(`${data?.created_at}`) || false
-  );
+export default function NewsCard({ style, data, isFav, saveFavNews }) {
+  const [fav, setFav] = useState(isFav || false);
   const [notFirst, setNotFirst] = useState(false);
 
   const handleFav = () => {
@@ -30,7 +25,7 @@ export default function NewsCard({ style, data }) {
 
     const newsItem = { [data?.created_at]: data };
 
-    setFavNews({ type: fav ? "remove" : "add", newsItem });
+    saveFavNews({ type: fav ? "remove" : "add", newsItem });
   };
 
   const effectIfNotFirstAndFav = () => notFirst && fav;
@@ -55,28 +50,32 @@ export default function NewsCard({ style, data }) {
     }
   };
 
-  return (
-    <Card style={{ ...style }}>
-      <TextContainerLink
-        href={data?.story_url}
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <TimeAuthorCon>
-          <ClockIcon src={clock} />
-          <TimeAuthorText>
-            {hoursDiff()} ago by {data?.author}
-          </TimeAuthorText>
-        </TimeAuthorCon>
-        <CardTitle>{data?.story_title || "No title"}</CardTitle>
-      </TextContainerLink>
-      <FavCon onClick={() => handleFav()}>
-        <FavIcon
-          hearted={effectIfNotFirstAndFav()}
-          src={ifFavHeart()}
-          alt="icon"
-        />
-      </FavCon>
-    </Card>
-  );
+  if (data === undefined) {
+    return null;
+  } else {
+    return (
+      <Card style={{ ...style }}>
+        <TextContainerLink
+          href={data?.story_url}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <TimeAuthorCon>
+            <ClockIcon src={clock} />
+            <TimeAuthorText>
+              {hoursDiff()} ago by {data?.author}
+            </TimeAuthorText>
+          </TimeAuthorCon>
+          <CardTitle>{data?.story_title || "No title"}</CardTitle>
+        </TextContainerLink>
+        <FavCon onClick={() => handleFav()}>
+          <FavIcon
+            hearted={effectIfNotFirstAndFav()}
+            src={ifFavHeart()}
+            alt="icon"
+          />
+        </FavCon>
+      </Card>
+    );
+  }
 }
