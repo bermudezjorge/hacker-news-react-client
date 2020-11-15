@@ -24,6 +24,7 @@ export default function NewsCard({ style, data, isFav, saveFavNews }) {
     setNotFirst(true);
 
     const newsItem = { [data?.created_at]: data };
+    console.log(data);
 
     saveFavNews({ type: fav ? "remove" : "add", newsItem });
   };

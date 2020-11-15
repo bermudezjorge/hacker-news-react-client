@@ -10,11 +10,11 @@ import Dropdown from "components/Dropdown";
 import News from "components/News";
 import FavNews from "components/FavNews";
 
-import useSharedState from "hooks/useSharedState";
+import useFilter from "hooks/useFilter";
 
 function App() {
   const { favNews, saveFavNews } = useFavNews();
-  const { currectOption, handleOption } = useSharedState();
+  const { currectOption, handleOption } = useFilter();
 
   return (
     <Layout>

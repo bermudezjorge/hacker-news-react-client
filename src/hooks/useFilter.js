@@ -4,7 +4,7 @@ import useLocalStorage from "./useLocalStorage";
 
 const defaultOption = { logo: null, title: null };
 
-export default function useSharedState() {
+export default function useFilter() {
   const [storage, setStorage] = useLocalStorage("filterOption");
   const [currectOption, setCurrectOption] = useState(storage || defaultOption);
 

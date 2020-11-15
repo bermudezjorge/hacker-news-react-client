@@ -12,8 +12,10 @@ export const Card = styled.div`
   &:hover {
     opacity: 0.7;
   }
-  &:nth-child(even) {
-    margin-left: 25px;
+  @media (min-width: 640px) {
+    &:nth-child(even) {
+      margin-left: 25px;
+    }
   }
 `;
 
